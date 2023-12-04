@@ -4,8 +4,8 @@ const dashRoutes = require('./dash-routes.js');
 const homeRoutes = require('./home-routes');
 const apiRoutes = require("./api")
 
-router.use('/', homeRoutes);
-router.use('/dash', dashRoutes);
-router.use('/api', apiRoutes);
+myRouter.use('/', homeRoutes);
+myRouter.use('/dash', dashRoutes);
+myRouter.use('/api', apiRoutes);
 
 module.exports = myRouter;

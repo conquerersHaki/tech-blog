@@ -1,4 +1,4 @@
-const Router = require("express").Router();
+const myRouter = require("express").Router();
 const { User } = require("../../models");
 
 // Endpoint for creating a new user

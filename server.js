@@ -4,7 +4,7 @@ const session = require("express-session");
 const exphbs = require("express-handlebars");
 
 const sequelize = require("./config/connection.js");
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,23 +16,22 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
-  })
+    db: sequelize,
+  }),
 };
 
 app.use(session(sessionConfig));
 
 const handlebarsInstance = exphbs.create({
   helpers: {
-
     //for the date
-    format_date: date => {
+    format_date: (date) => {
       const month = date.getMonth() + 1;
       const day = date.getDate();
       const year = date.getFullYear();
       return `${month}/${day}/${year}`;
-    }
-  }
+    },
+  },
 });
 
 app.engine("handlebars", handlebarsInstance.engine);
@@ -43,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // import path for controllers
-app.use(require('./custom-controllers/'));
+app.use(require("./controllers"));
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}!`);
